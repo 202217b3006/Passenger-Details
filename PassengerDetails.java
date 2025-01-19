@@ -40,7 +40,7 @@ class Passenger implements Comparable<Passenger> {
         return SeatNumber;
     }
 
-    public void displayPassengerData() {
+    public void getpassengerdata() {
         System.out.printf("%-10s %-10s %-5s %-15s %-15s %-15s %-10s\n",name,adharID,age,ticketClass,StartPlace,destination,SeatNumber);
     }
     public int compareTo(Passenger other) {
@@ -110,7 +110,7 @@ public class PassengerDetails {
         System.out.println("\nPassenger Details:");
         System.out.printf("%-15s %-10s %-5s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
         for (Passenger pp : passengers) {
-            pp.displayPassengerData();
+            pp.getpassengerdata();
         }
 
         // Sorting
@@ -148,7 +148,7 @@ public class PassengerDetails {
             System.out.println("\nSorted Passenger Details:");
             System.out.printf("%-15s %-10s %-5s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
             for (Passenger p : passengers) {
-                p.displayPassengerData();
+                p.getpassengerdata();
             }
         
     }
