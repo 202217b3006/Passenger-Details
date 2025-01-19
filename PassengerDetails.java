@@ -1,17 +1,26 @@
 import java.util.*;
 
 class Passenger implements Comparable<Passenger> {
-    private String name,ticketClass,adharID,StartPlace,destination,SeatNumber;
-    private int age;
+    String name,ticketClass,adharID,StartPlace,destination,SeatNumber;
+    int age;
+    
+    public void  getpassengerdata(Scanner rd){
+            System.out.print("Name: ");
+            name = rd.nextLine();
+            System.out.print("Aadhar ID: ");
+            adharID = rd.nextLine();
+            System.out.print("Age: ");
+            age = rd.nextInt();
+            rd.nextLine(); 
+            System.out.print("Ticket Class (Economy/Business/First): ");
+            ticketClass = rd.nextLine();
+            System.out.print("Start Place: ");
+            StartPlace = rd.nextLine();
+            System.out.print("Destination: ");
+            destination = rd.nextLine();
+            System.out.print("Seat Number: ");
+            SeatNumber = rd.nextLine();
 
-    public Passenger(String name, String aID, int age, String tc, String start, String end, String seat) {
-        this.name = name;
-        this.adharID = aID;
-        this.age = age;
-        this.ticketClass = tc;
-        this.StartPlace = start;
-        this.destination = end;
-        this.SeatNumber = seat;
     }
 
     public String getadharID() {
@@ -40,8 +49,8 @@ class Passenger implements Comparable<Passenger> {
         return SeatNumber;
     }
 
-    public void getpassengerdata() {
-        System.out.printf("%-10s %-10s %-5s %-15s %-15s %-15s %-10s\n",name,adharID,age,ticketClass,StartPlace,destination,SeatNumber);
+    public void displaypassengerdata() {
+        System.out.printf("%-15s %-15s %-5s %-15s %-15s %-15s %-10s\n",name,adharID,age,ticketClass,StartPlace,destination,SeatNumber);
     }
     public int compareTo(Passenger other) {
         return this.name.compareTo(other.name);
@@ -81,36 +90,24 @@ public class PassengerDetails {
         Scanner sc = new Scanner(System.in);
         List<Passenger> passengers = new ArrayList<>();
         Set<String> adharid = new HashSet<>();
+         
 
         for (int i = 1; i <= 5; i++) {
             System.out.println("Enter details for passenger " + i + ":");
-            System.out.print("Name: ");
-            String name = sc.nextLine();
-            System.out.print("Aadhar ID: ");
-            String adharID = sc.nextLine();
-            if (!adharid.add(adharID)) {
+            Passenger p = new Passenger();
+            p.getpassengerdata(sc);
+            if (!adharid.add(p.getadharID())) {
                 System.out.println("Duplicate Adhar id found");
                 continue;
             }
-            System.out.print("Age: ");
-            int age = sc.nextInt();
-            sc.nextLine(); 
-            System.out.print("Ticket Class (Economy/Business/First): ");
-            String ticketClass = sc.nextLine();
-            System.out.print("Start Place: ");
-            String startPlace = sc.nextLine();
-            System.out.print("Destination: ");
-            String destination = sc.nextLine();
-            System.out.print("Seat Number: ");
-            String seatNumber = sc.nextLine();
-            Passenger p = new Passenger(name, adharID, age, ticketClass, startPlace, destination, seatNumber);
+             
             passengers.add(p);
         
     }
         System.out.println("\nPassenger Details:");
-        System.out.printf("%-15s %-10s %-5s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
+        System.out.printf("%-15s %-10s %-10s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
         for (Passenger pp : passengers) {
-            pp.getpassengerdata();
+            pp.displaypassengerdata();
         }
 
         // Sorting
@@ -146,9 +143,9 @@ public class PassengerDetails {
 
             //sorted data
             System.out.println("\nSorted Passenger Details:");
-            System.out.printf("%-15s %-10s %-5s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
-            for (Passenger p : passengers) {
-                p.getpassengerdata();
+            System.out.printf("%-15s %-10s %-10s %-15s %-15s %-15s %-10s\n","Name", "Adhar ID", "Age", "Class", "Start Place", "Destination", "Seat No.");
+            for (Passenger pp : passengers) {
+                pp.displaypassengerdata();
             }
         
     }
